@@ -11,6 +11,8 @@ gem 'haml'
 gem 'bootstrap-sass'
 gem 'redis'
 gem 'puma'
+gem 'pusher'
+gem 'figaro'
 
 group :production do
   gem 'rails_12factor'

@@ -1,0 +1,39 @@
+$(function(){
+  
+  // ====== EventSource ======
+  // var source = new EventSource('/stream');
+  // 
+  // source.addEventListener('stream.pictures.created', function(e) {
+  //   var picture = $.parseJSON(e.data);
+  //   onPictureCreated(picture);
+  // });
+  // 
+  // source.addEventListener('heartbeat', function(e) {
+  //   console.log(e.data);
+  // });
+  
+  // ====== Pusher ======
+  var pusher = new Pusher('<%= Pusher.key %>'); // uses your APP KEY
+  var channel = pusher.subscribe('stream');
+  
+  channel.bind('picture.created', function(picture){
+    onPictureCreated(picture);
+  });
+  
+});
+
+function onPictureCreated(picture){
+  if( ! $("img[data-id='"+ picture.id +"']").length ){
+    var pictures = $('#pictures');
+    var pic_div = $("<div class='col-xs-6 col-md-3' style='display: none;'></div>");
+    var pic_link = $("<a href='"+ picture.image.url +"' class='thumbnail'></a>");
+    var pic_img = $("<img src='"+ picture.image.url +"' data-id='"+ picture.id +"'>");
+  
+    pic_link.append(pic_img);
+    pic_div.append(pic_link);
+    pictures.prepend(pic_div);
+  
+    pic_div.fadeIn('slow');
+  }
+}
+

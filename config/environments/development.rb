@@ -7,10 +7,7 @@ ExploreXdkWebapp::Application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boot.
-  config.eager_load = true
-
-  # config.preload_frameworks = true
-  config.allow_concurrency = true
+  config.eager_load = false
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
