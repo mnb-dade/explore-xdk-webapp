@@ -1,0 +1,12 @@
+- content_for :head do
+  = javascript_include_tag 'stream'
+
+.container
+  .page-header
+    %h1 Pictures
+    
+  #pictures.row
+    - @pictures.each do |picture|
+      .col-xs-6.col-md-3
+        %a.thumbnail{ href: picture.image.url }
+          = image_tag picture.image.url, data: { id: picture.id }
